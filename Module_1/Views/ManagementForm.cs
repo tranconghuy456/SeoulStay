@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Module_1
+namespace Module_1.Views
 {
-    public partial class Form1 : Form
+    public partial class frm_Management : Form
     {
-        public Form1()
+        private int userRole = 1;
+        public frm_Management()
         {
             InitializeComponent();
+        }
+
+        private void frm_Management_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(userRole.ToString());
         }
     }
 }

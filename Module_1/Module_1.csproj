@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,14 +47,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controllers\Providers.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ManagementForm.Designer.cs">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +75,11 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\ManagementForm.resx">
+      <DependentUpon>ManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +92,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Images\Icons\001-home-1.png" />
+    <Content Include="Assets\Images\Icons\002-home2-1.png" />
+    <Content Include="Assets\Images\Icons\003-home3-1.png" />
+    <Content Include="Assets\Images\Icons\004-office-1.png" />
+    <Content Include="Assets\Images\Icons\005-newspaper-1.png" />
+    <Content Include="Assets\Images\Icons\006-pencil-1.png" />
+    <Content Include="Assets\Images\Icons\007-pencil2-1.png" />
+    <Content Include="Assets\Images\Icons\008-quill-1.png" />
+    <Content Include="Assets\Images\Icons\009-pen-1.png" />
+    <Content Include="Assets\Images\Icons\010-blog-1.png" />
+    <Content Include="Assets\Images\Icons\011-eyedropper-1.png" />
+    <Content Include="Assets\Images\Icons\012-droplet-1.png" />
+    <Content Include="Assets\Images\Icons\013-paint-format-1.png" />
+    <Content Include="Assets\Images\Icons\014-image-1.png" />
+    <Content Include="Assets\Images\Icons\015-images-1.png" />
+    <Content Include="Assets\Images\Icons\016-camera-1.png" />
+    <Content Include="Assets\Images\Icons\017-headphones-1.png" />
+    <Content Include="Assets\Images\Icons\166-rocket-1.png" />
+    <Content Include="Assets\Images\Icons\167-meter-1.png" />
+    <Content Include="Assets\Images\Icons\168-meter2-1.png" />
+    <Content Include="Assets\Images\Icons\169-hammer2-1.png" />
+    <Content Include="Assets\Images\Icons\login-box-line.png" />
+    <Content Include="Assets\Images\WSC2022SE_TP09_Logo_actual_en.png" />
+    <Content Include="Database\Session1-MsSQL.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
