@@ -58,5 +58,29 @@ namespace Module_1.Properties {
                 this["UserRole"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Emp {
+            get {
+                return ((string)(this["Emp"]));
+            }
+            set {
+                this["Emp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string isSaved {
+            get {
+                return ((string)(this["isSaved"]));
+            }
+            set {
+                this["isSaved"] = value;
+            }
+        }
     }
 }
