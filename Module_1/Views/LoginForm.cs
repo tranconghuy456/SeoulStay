@@ -24,18 +24,64 @@ namespace Module_1
 
         private string strUsername, strPassword, strEmp;
         private int iIsEmp = 2;
+        private bool temp = true;
         private LoginModel login;
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.Username != string.Empty)
-                txt_Username.Text = Properties.Settings.Default.Username;
-            this.ActiveControl = txt_Emp;            
+            //txt_Emp.Text = string.IsNullOrEmpty(Properties.Settings.Default.Emp) ? "" : Properties.Settings.Default.Emp;
+            //txt_Username.Text = string.IsNullOrEmpty(Properties.Settings.Default.Username) ? "" : Properties.Settings.Default.Username;
+            //txt_Password.Text = string.IsNullOrEmpty(Properties.Settings.Default.Password) ? "" : Properties.Settings.Default.Password;
+            string Emp = string.IsNullOrEmpty(Properties.Settings.Default.Emp) ? null : Properties.Settings.Default.Emp;
+            string Username = string.IsNullOrEmpty(Properties.Settings.Default.Username) ? null : Properties.Settings.Default.Username;
+            string Password = string.IsNullOrEmpty(Properties.Settings.Default.Password) ? null : Properties.Settings.Default.Password;
+            int isEmp = string.IsNullOrEmpty(Properties.Settings.Default.UserRole) ? -1 : int.Parse(Properties.Settings.Default.UserRole);
+
+            if (((string.IsNullOrEmpty(Emp)) || (string.IsNullOrEmpty(Username))) && (string.IsNullOrEmpty(Password)) && (isEmp < 0))
+            {
+                temp = true;
+                this.ActiveControl = txt_Emp;
+            }
+            else
+            {
+                temp = false;
+                Login(Emp, Username, Password, isEmp);
+            }
         }
 
         private void chk_PassShow_CheckedChanged(object sender, EventArgs e)
         {
             txt_Password.PasswordChar = chk_PassShow.Checked ? '\0' : '*';
+        }
+
+        private void Login(string Emp, string Username, string Password, int isEmp)
+        {
+            login = new LoginModel(Emp, Username, Password, isEmp);
+            if (login.Connect())
+            {
+                int iUserRole = login.LoginCheckPoint();
+                switch (iUserRole)
+                {
+                    case 0:
+                        MessageBox.Show("Username or Password is incorrect.", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    case 1:
+                    case 2:
+                        if (RememberMe(iUserRole) > 0)
+                        {
+                            this.Close();
+                            thread = new Thread(OpenManagementForm);
+                            thread.SetApartmentState(ApartmentState.STA);
+                            thread.Start();
+                        }
+                        else
+                            MessageBox.Show("Something went wrong. Please try again!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        MessageBox.Show("Your profile data is missing.\nPlease contact your System Administrator", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                }
+            }
         }
 
         private void btn_Login_Click(object sender, EventArgs e)
@@ -44,40 +90,18 @@ namespace Module_1
             {
                 string errMessage = ValidateField();
                 MessageBox.Show(errMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            } else
-            {
-                login = new LoginModel(strEmp, strUsername, strPassword, iIsEmp);
-                if (login.Connect())
-                {
-                    int iUserRole = login.LoginCheckPoint();
-                    switch(iUserRole)
-                    {
-                    case 0:
-                            MessageBox.Show("Username or Password is incorrect.", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                    case 1:
-                    case 2:
-                            if (RememberMe(iUserRole) > 0) { 
-                                this.Close();
-                                thread = new Thread(OpenManagementForm);
-                                thread.SetApartmentState(ApartmentState.STA);
-                                thread.Start();
-                            } else
-                                MessageBox.Show("Something went wrong. Please try again!", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                    default:
-                            MessageBox.Show("Your profile data is missing.\nPlease contact your System Administrator", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                    }
-                }
             }
+            else
+                Login(strEmp, strUsername, strPassword, iIsEmp);
         }
 
         private int RememberMe(int iUserRole)
         {
-            if (chk_KeepMeSignedIn.Checked == true)
+            if (chk_KeepMeSignedIn.Checked)
             {
-                try { 
+                temp = false;
+                try {
+                    Properties.Settings.Default.Emp = strEmp;
                     Properties.Settings.Default.Username = strUsername;
                     Properties.Settings.Default.Password = strPassword;
                     Properties.Settings.Default.UserRole = iUserRole.ToString();
@@ -89,9 +113,10 @@ namespace Module_1
                 }
             } else
             {
-                Properties.Settings.Default.Username = "";
-                Properties.Settings.Default.Password = "";
-                Properties.Settings.Default.UserRole = "";
+                Properties.Settings.Default.Emp = null;
+                Properties.Settings.Default.Username = null;
+                Properties.Settings.Default.Password = null;
+                Properties.Settings.Default.UserRole = null;
                 Properties.Settings.Default.Save();
                 return 1;
             }
@@ -119,12 +144,10 @@ namespace Module_1
             if ((sender as Form).ActiveControl is Button)
             {
                 // do something
-            } else
+            } else if(temp == true)
             {
                 if (MessageBox.Show("Are you sure want to exit?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                {
-                    e.Cancel = true;
-                }
+                    e.Cancel = true;                
             }
         }
 
