@@ -118,7 +118,79 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="013-paint-format-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\013-paint-format-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="010-blog-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\010-blog-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="login-box-line1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\login-box-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="011-eyedropper-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\011-eyedropper-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="login-box-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Images\Icons\login-box-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="003-home3-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\003-home3-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="009-pen-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\009-pen-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="169-hammer2-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\169-hammer2-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="166-rocket-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\166-rocket-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="012-droplet-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\012-droplet-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="017-headphones-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\017-headphones-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="007-pencil2-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\007-pencil2-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="002-home2-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\002-home2-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="001-home-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\001-home-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="005-newspaper-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\005-newspaper-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="014-image-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\014-image-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="167-meter-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\167-meter-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search-2-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\search-2-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="006-pencil-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\006-pencil-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="015-images-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\015-images-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="168-meter2-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\168-meter2-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="008-quill-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\008-quill-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="016-camera-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\016-camera-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="004-office-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\004-office-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add-box-line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Images\Icons\add-box-line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

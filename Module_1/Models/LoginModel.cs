@@ -52,7 +52,7 @@ namespace Module_1.Models
         // Checkpoint method //
         // In: username, password
         // Out: 0 -> invalid; 1 -> user; 2 -> admin
-        public int LoginCheckPoint()
+        public int[] LoginCheckPoint()
         {
             try
             {
@@ -65,9 +65,13 @@ namespace Module_1.Models
                     query.Parameters.AddWithValue("@IsEmp", iIsEmp);
 
                     query.Parameters.Add("@IsValid", SqlDbType.Int);
+                    query.Parameters.Add("@UID", SqlDbType.Int);
                     query.Parameters["@IsValid"].Direction = ParameterDirection.Output;
+                    query.Parameters["@UID"].Direction = ParameterDirection.Output;
                     query.ExecuteNonQuery();
-                    return (int)query.Parameters["@IsValid"].Value;
+
+                    int[] dbReturn = { (int)query.Parameters["@IsValid"].Value, (int)query.Parameters["@UID"].Value };
+                    return dbReturn;
                 }
             } catch(Exception ex)
             {
@@ -76,8 +80,7 @@ namespace Module_1.Models
             {
                 Disconnect();
             }
-    
-            return -1;
+            return null;
         }
 
     }

@@ -48,8 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Providers.cs" />
+    <Compile Include="Models\ActionModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ManagementModel.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Views\ActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ActionForm.Designer.cs">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +72,9 @@
     <Compile Include="Views\ManagementForm.Designer.cs">
       <DependentUpon>ManagementForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\ActionForm.resx">
+      <DependentUpon>ActionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,7 +127,9 @@
     <Content Include="Assets\Images\Icons\167-meter-1.png" />
     <Content Include="Assets\Images\Icons\168-meter2-1.png" />
     <Content Include="Assets\Images\Icons\169-hammer2-1.png" />
+    <None Include="Assets\Images\Icons\add-box-line.png" />
     <Content Include="Assets\Images\Icons\login-box-line.png" />
+    <Content Include="Assets\Images\Icons\search-2-line.png" />
     <Content Include="Assets\Images\WSC2022SE_TP09_Logo_actual_en.png" />
     <Content Include="Database\Session1-MsSQL.sql" />
   </ItemGroup>
