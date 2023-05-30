@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Principal;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
+namespace Module_1_Rebuilt.Context
+{
+    public static class UserContext
+    {
+        //private static UserContext _instance;
+        //public static UserContext instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null)
+        //            _instance = new UserContext();
+        //        return _instance;   
+        //    }
+        //}
+
+        [Required]
+        public static int UID { get; set; }
+        [Required]
+        public static int UserTypeID { get; set; }
+        [Required]
+        [Range(1, 50)]
+        public static string Username { get; set; }
+        [Required]
+        [Range(1, 50)]
+        public static string Password { get; set; }
+        [Required]
+        [Range(1, 50)]
+        public static string FullName { get; set; }
+        [Required]
+        public static int Gender { get; set; }
+        [Required]
+        public static DateTime BirthDate { get; set; }
+        [Required]
+        public static int FamilyCount { get; set; }
+        public static bool RememberMe { get; set; } = false;
+        
+    }
+}
+//[ID][bigint] IDENTITY(1,1) NOT NULL,
+
+//[GUID] [uniqueidentifier] NOT NULL,
+
+//[UserTypeID] [bigint] NOT NULL,
+
+//[Username] [varchar] (50) NOT NULL,
+
+//[Password] [varchar] (50) NOT NULL,
+
+//[FullName] [nvarchar] (50) NOT NULL,
+
+//[Gender] [bit] NOT NULL,
+
+//[BirthDate] [date] NOT NULL,
+
+//[FamilyCount] [int] NOT NULL,

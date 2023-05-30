@@ -1,4 +1,5 @@
-﻿using Module_1.Controllers;
+﻿using Module_1.Context;
+using Module_1.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,28 +33,8 @@ namespace Module_1.Models
             providers.Disconnect();
         }
 
-        // GetTable method //
-        //public DataTable GetAvailableAssets()
-        //{
-        //    DataTable table = new DataTable();
-        //    SqlDataAdapter adapter = new SqlDataAdapter();
-        //    adapter.Fill(table);
-        //    return table;
-        //}
-
-        public DataTable GetAvailableAssets(int UID)
+        public DataTable GetUserData(int UID)
         {
-            //DataTable table = new DataTable();
-            //SqlCommand query = new SqlCommand("Usp_GetUserData", Connection());
-            //SqlDataAdapter adapter = new SqlDataAdapter();
-            //query.CommandType = CommandType.StoredProcedure;
-
-            //providers.Connect();
-            //query.ExecuteNonQuery();
-            //adapter.SelectCommand = query;
-            //adapter.Fill(table);
-            //providers.Disconnect();
-            //return table;
             try
             {
                 if (Connect())
@@ -68,6 +49,57 @@ namespace Module_1.Models
                     adapter.SelectCommand = query;
                     adapter.Fill(table);
                     Disconnect();
+                    return table;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return null;
+        }
+
+        public DataTable GetTravellerData()
+        {
+            try
+            {
+                if (Connect())
+                {
+                    DataTable table = new DataTable();
+                    SqlCommand query = new SqlCommand("Usp_GetTravellerData", providers.connection);
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+
+                    query.CommandType = CommandType.StoredProcedure;
+                    query.Parameters.AddWithValue("@UID", UserContext.UID);
+                    query.ExecuteNonQuery();
+                    adapter.SelectCommand = query;
+                    adapter.Fill(table);
+                    providers.Disconnect();
+                    return table;
+                }
+            } catch (Exception ex)
+            {
+                throw;
+            }
+            return null;
+        }
+
+        public DataTable GetEmpData()
+        {
+            try
+            {
+                if (Connect())
+                {
+                    DataTable table = new DataTable();
+                    SqlCommand query = new SqlCommand("Usp_GetEmpData", providers.connection);
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+
+                    query.CommandType = CommandType.StoredProcedure;
+                    query.Parameters.AddWithValue("@UID", UserContext.UID);
+                    query.ExecuteNonQuery();
+                    adapter.SelectCommand = query;
+                    adapter.Fill(table);
+                    providers.Disconnect();
                     return table;
                 }
             }

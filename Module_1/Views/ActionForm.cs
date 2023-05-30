@@ -1,4 +1,5 @@
-﻿using Module_1.Models;
+﻿using Module_1.Context;
+using Module_1.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,10 @@ namespace Module_1.Views
 {
     public partial class frm_Action : Form
     {
-        private int UID;
         private ActionModel action = new ActionModel();
-        public frm_Action(int UID)
+        public frm_Action()
         {
             InitializeComponent();
-            UID = this.UID;
         }
 
         private void frm_Action_Load(object sender, EventArgs e)
@@ -28,6 +27,25 @@ namespace Module_1.Views
             cb_Type.DataSource = table;
             cb_Type.DisplayMember = "Name";
             cb_Type.ValueMember = "ID";
+            LoadAmenities();
+            LoadAttraction();
+        }
+
+        private void LoadAmenities()
+        {
+            DataGridViewCheckBoxColumn chkSelect = new DataGridViewCheckBoxColumn();
+
+            DataTable table = new DataTable();
+            table = action.GetAmenitiesData();
+            dgv_Amenity.DataSource = table;
+            dgv_Amenity.Columns.Add(chkSelect);
+
+        }
+        private void LoadAttraction()
+        {
+            DataTable table = new DataTable();
+            table = action.GetAttractionData();
+            dgv_Attraction.DataSource = table;
         }
 
         private void cb_Type_Validating(object sender, CancelEventArgs e)
@@ -247,6 +265,11 @@ namespace Module_1.Views
             else
                 errorProvider.SetError(nbric_ReserMax, "");
             return status;
+        }
+
+        private void dgv_Amenity_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

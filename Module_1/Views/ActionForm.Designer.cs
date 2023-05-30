@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.dgv_Amenity = new System.Windows.Forms.DataGridView();
+            this.dgv_Attraction = new System.Windows.Forms.DataGridView();
             this.tabCtr_Action = new System.Windows.Forms.TabControl();
             this.tabpg_Details = new System.Windows.Forms.TabPage();
             this.btn_Cancel = new System.Windows.Forms.Button();
@@ -61,13 +63,13 @@
             this.tabpg_Amenities = new System.Windows.Forms.TabPage();
             this.btn_Cancel_1 = new System.Windows.Forms.Button();
             this.btn_Next_1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label14 = new System.Windows.Forms.Label();
             this.tabpg_DTA = new System.Windows.Forms.TabPage();
             this.btn_Finish = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label15 = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Amenity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Attraction)).BeginInit();
             this.tabCtr_Action.SuspendLayout();
             this.tabpg_Details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nbric_NoBathrooms)).BeginInit();
@@ -77,11 +79,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbric_ReserMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nbric_Capacity)).BeginInit();
             this.tabpg_Amenities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabpg_DTA.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dgv_Amenity
+            // 
+            this.dgv_Amenity.AllowUserToAddRows = false;
+            this.dgv_Amenity.AllowUserToDeleteRows = false;
+            this.dgv_Amenity.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Amenity.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv_Amenity.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Amenity.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dgv_Amenity.Location = new System.Drawing.Point(47, 62);
+            this.dgv_Amenity.Name = "dgv_Amenity";
+            this.dgv_Amenity.RowTemplate.Height = 28;
+            this.dgv_Amenity.Size = new System.Drawing.Size(550, 415);
+            this.dgv_Amenity.TabIndex = 1;
+            this.dgv_Amenity.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Amenity_CellContentClick);
+            // 
+            // dgv_Attraction
+            // 
+            this.dgv_Attraction.AllowUserToAddRows = false;
+            this.dgv_Attraction.AllowUserToDeleteRows = false;
+            this.dgv_Attraction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_Attraction.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dgv_Attraction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Attraction.GridColor = System.Drawing.SystemColors.ControlLight;
+            this.dgv_Attraction.Location = new System.Drawing.Point(19, 68);
+            this.dgv_Attraction.Name = "dgv_Attraction";
+            this.dgv_Attraction.RowTemplate.Height = 28;
+            this.dgv_Attraction.Size = new System.Drawing.Size(862, 413);
+            this.dgv_Attraction.TabIndex = 2;
             // 
             // tabCtr_Action
             // 
@@ -189,7 +218,7 @@
             // 
             // nbric_NoBathrooms
             // 
-            this.nbric_NoBathrooms.Location = new System.Drawing.Point(840, 63);
+            this.nbric_NoBathrooms.Location = new System.Drawing.Point(840, 67);
             this.nbric_NoBathrooms.Name = "nbric_NoBathrooms";
             this.nbric_NoBathrooms.Size = new System.Drawing.Size(50, 32);
             this.nbric_NoBathrooms.TabIndex = 6;
@@ -197,7 +226,7 @@
             // 
             // nbric_NoBedrooms
             // 
-            this.nbric_NoBedrooms.Location = new System.Drawing.Point(572, 63);
+            this.nbric_NoBedrooms.Location = new System.Drawing.Point(572, 67);
             this.nbric_NoBedrooms.Name = "nbric_NoBedrooms";
             this.nbric_NoBedrooms.Size = new System.Drawing.Size(50, 32);
             this.nbric_NoBedrooms.TabIndex = 5;
@@ -205,7 +234,7 @@
             // 
             // nbric_NoBeds
             // 
-            this.nbric_NoBeds.Location = new System.Drawing.Point(314, 63);
+            this.nbric_NoBeds.Location = new System.Drawing.Point(314, 67);
             this.nbric_NoBeds.Name = "nbric_NoBeds";
             this.nbric_NoBeds.Size = new System.Drawing.Size(50, 32);
             this.nbric_NoBeds.TabIndex = 4;
@@ -229,7 +258,7 @@
             // 
             // nbric_Capacity
             // 
-            this.nbric_Capacity.Location = new System.Drawing.Point(98, 63);
+            this.nbric_Capacity.Location = new System.Drawing.Point(98, 67);
             this.nbric_Capacity.Name = "nbric_Capacity";
             this.nbric_Capacity.Size = new System.Drawing.Size(50, 32);
             this.nbric_Capacity.TabIndex = 3;
@@ -255,7 +284,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(628, 65);
+            this.label6.Location = new System.Drawing.Point(628, 69);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(206, 24);
             this.label6.TabIndex = 0;
@@ -264,7 +293,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(370, 65);
+            this.label5.Location = new System.Drawing.Point(370, 69);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(200, 24);
             this.label5.TabIndex = 0;
@@ -273,7 +302,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(154, 65);
+            this.label4.Location = new System.Drawing.Point(154, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(154, 24);
             this.label4.TabIndex = 0;
@@ -354,7 +383,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 65);
+            this.label3.Location = new System.Drawing.Point(6, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 24);
             this.label3.TabIndex = 0;
@@ -373,12 +402,12 @@
             // 
             this.tabpg_Amenities.Controls.Add(this.btn_Cancel_1);
             this.tabpg_Amenities.Controls.Add(this.btn_Next_1);
-            this.tabpg_Amenities.Controls.Add(this.dataGridView1);
+            this.tabpg_Amenities.Controls.Add(this.dgv_Amenity);
             this.tabpg_Amenities.Controls.Add(this.label14);
             this.tabpg_Amenities.Location = new System.Drawing.Point(4, 33);
             this.tabpg_Amenities.Name = "tabpg_Amenities";
             this.tabpg_Amenities.Padding = new System.Windows.Forms.Padding(3);
-            this.tabpg_Amenities.Size = new System.Drawing.Size(912, 563);
+            this.tabpg_Amenities.Size = new System.Drawing.Size(926, 563);
             this.tabpg_Amenities.TabIndex = 1;
             this.tabpg_Amenities.Text = "Amenities";
             this.tabpg_Amenities.UseVisualStyleBackColor = true;
@@ -402,17 +431,6 @@
             this.btn_Next_1.Text = "Next";
             this.btn_Next_1.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.Location = new System.Drawing.Point(47, 62);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(550, 415);
-            this.dataGridView1.TabIndex = 1;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -425,11 +443,11 @@
             // tabpg_DTA
             // 
             this.tabpg_DTA.Controls.Add(this.btn_Finish);
-            this.tabpg_DTA.Controls.Add(this.dataGridView2);
+            this.tabpg_DTA.Controls.Add(this.dgv_Attraction);
             this.tabpg_DTA.Controls.Add(this.label15);
             this.tabpg_DTA.Location = new System.Drawing.Point(4, 33);
             this.tabpg_DTA.Name = "tabpg_DTA";
-            this.tabpg_DTA.Size = new System.Drawing.Size(912, 563);
+            this.tabpg_DTA.Size = new System.Drawing.Size(926, 563);
             this.tabpg_DTA.TabIndex = 2;
             this.tabpg_DTA.Text = "Distance to Attraction";
             this.tabpg_DTA.UseVisualStyleBackColor = true;
@@ -443,17 +461,6 @@
             this.btn_Finish.TabIndex = 4;
             this.btn_Finish.Text = "Finish";
             this.btn_Finish.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView2.Location = new System.Drawing.Point(19, 68);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(862, 413);
-            this.dataGridView2.TabIndex = 2;
             // 
             // label15
             // 
@@ -479,6 +486,8 @@
             this.Name = "frm_Action";
             this.Text = "Seoul Stay - Add / Edit Listing";
             this.Load += new System.EventHandler(this.frm_Action_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Amenity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Attraction)).EndInit();
             this.tabCtr_Action.ResumeLayout(false);
             this.tabpg_Details.ResumeLayout(false);
             this.tabpg_Details.PerformLayout();
@@ -490,10 +499,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nbric_Capacity)).EndInit();
             this.tabpg_Amenities.ResumeLayout(false);
             this.tabpg_Amenities.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabpg_DTA.ResumeLayout(false);
             this.tabpg_DTA.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -531,8 +538,6 @@
         private System.Windows.Forms.NumericUpDown nbric_ReserMax;
         private System.Windows.Forms.NumericUpDown nbric_ReserMin;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btn_Cancel_1;
         private System.Windows.Forms.Button btn_Next_1;
@@ -540,5 +545,7 @@
         private System.Windows.Forms.Button btn_Finish;
         private System.Windows.Forms.Button btn_Next;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.DataGridView dgv_Amenity;
+        private System.Windows.Forms.DataGridView dgv_Attraction;
     }
 }

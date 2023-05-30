@@ -6,28 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Module_1.Context;
 
 namespace Module_1.Models
 {
     class LoginModel
     {
-        private string strEmp, strUsername, strPassword = null;
-        private int iIsEmp = 2;
         private Providers providers = new Providers();
-        public LoginModel(string Emp, string Username, string Password, int isEmp)
-        {
-            this.strEmp = Emp;
-            this.strUsername = this.strEmp == null ? Username : Emp;
-            this.strPassword = Password;
-            this.iIsEmp = Emp == null ? 1 : 2;   
-        }
-        public LoginModel()
-        {
-            this.strEmp = "";
-            this.strUsername = "";
-            this.strPassword = "";
-            this.iIsEmp = 2;
-        }
 
         // Connection Method //
         // return connection string //
@@ -52,7 +37,7 @@ namespace Module_1.Models
         // Checkpoint method //
         // In: username, password
         // Out: 0 -> invalid; 1 -> user; 2 -> admin
-        public int[] LoginCheckPoint()
+        public int LoginCheckPoint()
         {
             try
             {
@@ -60,18 +45,18 @@ namespace Module_1.Models
                     SqlCommand query = new SqlCommand("Usp_LoginCheckPoint", Connection());
 
                     query.CommandType = CommandType.StoredProcedure;
-                    query.Parameters.AddWithValue("@Username", strUsername);
-                    query.Parameters.AddWithValue("@Password", strPassword);
-                    query.Parameters.AddWithValue("@IsEmp", iIsEmp);
+                    query.Parameters.AddWithValue("@Username", UserContext.Username);
+                    query.Parameters.AddWithValue("@Password", UserContext.Password);
+                    query.Parameters.AddWithValue("@Role", UserContext.isEmp);
 
                     query.Parameters.Add("@IsValid", SqlDbType.Int);
                     query.Parameters.Add("@UID", SqlDbType.Int);
                     query.Parameters["@IsValid"].Direction = ParameterDirection.Output;
                     query.Parameters["@UID"].Direction = ParameterDirection.Output;
                     query.ExecuteNonQuery();
-
-                    int[] dbReturn = { (int)query.Parameters["@IsValid"].Value, (int)query.Parameters["@UID"].Value };
-                    return dbReturn;
+                    UserContext.UID = (int)query.Parameters["@UID"].Value;
+                    
+                    return (int)query.Parameters["@IsValid"].Value;
                 }
             } catch(Exception ex)
             {
@@ -80,7 +65,7 @@ namespace Module_1.Models
             {
                 Disconnect();
             }
-            return null;
+            return -1;
         }
 
     }

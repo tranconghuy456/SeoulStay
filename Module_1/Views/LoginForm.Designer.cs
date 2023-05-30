@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.pic_Logo = new System.Windows.Forms.PictureBox();
             this.gr_Login = new System.Windows.Forms.GroupBox();
@@ -43,8 +44,10 @@
             this.btn_Exit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.link_CreateAcc = new System.Windows.Forms.LinkLabel();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pic_Logo)).BeginInit();
             this.gr_Login.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // pic_Logo
@@ -105,6 +108,8 @@
             this.txt_Password.PasswordChar = '*';
             this.txt_Password.Size = new System.Drawing.Size(246, 32);
             this.txt_Password.TabIndex = 3;
+            this.txt_Password.TextChanged += new System.EventHandler(this.txt_Password_TextChanged);
+            this.txt_Password.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Password_Validating);
             // 
             // txt_Username
             // 
@@ -113,6 +118,7 @@
             this.txt_Username.Size = new System.Drawing.Size(246, 32);
             this.txt_Username.TabIndex = 2;
             this.txt_Username.TextChanged += new System.EventHandler(this.txt_Username_TextChanged);
+            this.txt_Username.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Username_Validating);
             // 
             // txt_Emp
             // 
@@ -121,6 +127,7 @@
             this.txt_Emp.Size = new System.Drawing.Size(246, 32);
             this.txt_Emp.TabIndex = 1;
             this.txt_Emp.TextChanged += new System.EventHandler(this.txt_Emp_TextChanged);
+            this.txt_Emp.Validating += new System.ComponentModel.CancelEventHandler(this.txt_Emp_Validating);
             // 
             // label4
             // 
@@ -193,6 +200,10 @@
             this.link_CreateAcc.TabStop = true;
             this.link_CreateAcc.Text = "Create one";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -212,6 +223,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pic_Logo)).EndInit();
             this.gr_Login.ResumeLayout(false);
             this.gr_Login.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +245,7 @@
         private System.Windows.Forms.Button btn_Exit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel link_CreateAcc;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 

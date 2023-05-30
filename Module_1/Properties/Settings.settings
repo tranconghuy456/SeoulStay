@@ -8,13 +8,10 @@
     <Setting Name="Password" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="UserRole" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="isEmp" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
     </Setting>
-    <Setting Name="Emp" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="isSaved" Type="System.String" Scope="User">
+    <Setting Name="isSaved" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

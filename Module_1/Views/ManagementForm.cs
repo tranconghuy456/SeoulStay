@@ -8,28 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Module_1.Models;
+using Module_1.Context;
 
 namespace Module_1.Views
 {
     public partial class frm_Management : Form
     {
-        private int userRole;
-        private int UID;
-        public frm_Management(int iIsEmp, int iUID)
+        public frm_Management()
         {
             InitializeComponent();
-            userRole = iIsEmp;
-            UID = iUID;
         }
 
         private void frm_Management_Load(object sender, EventArgs e)
         {
-            switch (userRole)
+            switch (UserContext.isEmp)
             {
-                case 1:
+                case 2:
                     LoadTravlerData();
                     break;
-                case 2:
+                case 1:
                     LoadEmpData();
                     break;
                 default:
@@ -51,25 +48,28 @@ namespace Module_1.Views
                 Text = "Details",
                 UseColumnTextForButtonValue = true
             };
+
             // Listing all Data
-            ListingData(dgv_Emp);
-            ListingData(dgv_travel);
+            DataTable tableTraveller = new DataTable();
+            DataTable tableEmp = new DataTable();
+            ManagementModel listing = new ManagementModel();
+            tableTraveller = listing.GetTravellerData();
+            tableEmp = listing.GetEmpData();
+            dgv_travel.DataSource = tableTraveller;
+            dgv_Emp.DataSource = tableEmp;
+
+            // Add buttons
             dgv_Emp.Columns.Add(btnEdit);
             dgv_Emp.Columns.Add(btnDetails);
         }
 
         private void LoadTravlerData()
         {
-            ListingData(dgv_travel);
-            tabCtr_Client.TabPages.Remove(tabpg_Owner);
-        }
-
-        private void ListingData(DataGridView dgv)
-        {
-            DataTable table = new DataTable();
+            DataTable tableTraveller = new DataTable();
             ManagementModel listing = new ManagementModel();
-            table = listing.GetAvailableAssets(UID);
-            dgv.DataSource = table;
+            tableTraveller = listing.GetTravellerData();
+            dgv_travel.DataSource = tableTraveller;
+            tabCtr_Client.TabPages.Remove(tabpg_Owner);
         }
 
         private void frm_Management_FormClosing(object sender, FormClosingEventArgs e)
@@ -84,11 +84,7 @@ namespace Module_1.Views
             {
                 try
                 {
-                    Properties.Settings.Default.Emp = null;
-                    Properties.Settings.Default.Username = null;
-                    Properties.Settings.Default.Password = null;
-                    Properties.Settings.Default.UserRole = null;
-                    Properties.Settings.Default.Save();
+                    Properties.Settings.Default.Reset();
                 }
                 catch
                 {
@@ -112,7 +108,7 @@ namespace Module_1.Views
 
         private void btn_AddListing_Click(object sender, EventArgs e)
         {
-            Form ActionForm = new frm_Action(UID);
+            Form ActionForm = new frm_Action();
             ActionForm.ShowDialog();
         }
     }

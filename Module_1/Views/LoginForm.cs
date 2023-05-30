@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Module_1.Context;
 
 namespace Module_1
 {
@@ -22,28 +23,24 @@ namespace Module_1
             InitializeComponent();
         }
 
-        private string strUsername, strPassword, strEmp;
-        private int iIsEmp = -1;
-        private int iUID;
-        private int[] dbReturn;
         private bool isSaved = false;
         private LoginModel login;
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            string Emp = string.IsNullOrEmpty(Properties.Settings.Default.Emp) ? null : Properties.Settings.Default.Emp;
-            string Username = string.IsNullOrEmpty(Properties.Settings.Default.Username) ? null : Properties.Settings.Default.Username;
-            string Password = string.IsNullOrEmpty(Properties.Settings.Default.Password) ? null : Properties.Settings.Default.Password;
-            int isEmp = string.IsNullOrEmpty(Properties.Settings.Default.UserRole) ? -1 : int.Parse(Properties.Settings.Default.UserRole);
+            UserContext.isEmp = Properties.Settings.Default.isEmp < 0 ? -1 : Properties.Settings.Default.isEmp;
+            UserContext.Username = string.IsNullOrEmpty(Properties.Settings.Default.Username) ? null : Properties.Settings.Default.Username;
+            UserContext.Password = string.IsNullOrEmpty(Properties.Settings.Default.Password) ? null : Properties.Settings.Default.Password;
 
-            if (((string.IsNullOrEmpty(Emp)) || (string.IsNullOrEmpty(Username))) && (string.IsNullOrEmpty(Password)) && (isEmp < 0))
+            if (string.IsNullOrEmpty(UserContext.Username) && (string.IsNullOrEmpty(UserContext.Password)) && (UserContext.isEmp < 0))
             {
                 this.ActiveControl = txt_Emp;
+                Properties.Settings.Default.Reset();
             }
             else
             {
                 isSaved = true;
-                Login(Emp, Username, Password, isEmp);
+                Login();
             }
         }
 
@@ -52,32 +49,26 @@ namespace Module_1
             txt_Password.PasswordChar = chk_PassShow.Checked ? '\0' : '*';
         }
 
-        private void Login(string Emp, string Username, string Password, int isEmp)
+        private void Login()
         {
-            login = new LoginModel(Emp, Username, Password, isEmp);
+            login = new LoginModel();
             if (login.Connect())
             {
-                dbReturn = login.LoginCheckPoint();
-                iIsEmp = dbReturn[0];
-                iUID = dbReturn[1];
-
-                switch (iIsEmp)
+                switch (login.LoginCheckPoint())
                 {
-                    case 0:
+                    case -1:
                         MessageBox.Show("Username or Password is incorrect.", "Authentication Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         break;
                     case 1:
                     case 2:
-                        //iIsEmp = iUserRole;
                         if (chk_KeepMeSignedIn.Checked)
                         {
                             isSaved = true;
                             try
                             {
-                                Properties.Settings.Default.Emp = strEmp;
-                                Properties.Settings.Default.Username = strUsername;
-                                Properties.Settings.Default.Password = strPassword;
-                                Properties.Settings.Default.UserRole = iIsEmp.ToString();
+                                Properties.Settings.Default.Username = UserContext.Username;
+                                Properties.Settings.Default.Password = UserContext.Password;
+                                Properties.Settings.Default.isEmp = UserContext.isEmp;
                                 Properties.Settings.Default.Save();
                             }
                             catch
@@ -108,57 +99,34 @@ namespace Module_1
 
         private void btn_Login_Click(object sender, EventArgs e)
         {
-            if (ValidateField() != null)
-            {
-                string errMessage = ValidateField();
-                MessageBox.Show(errMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-                Login(strEmp, strUsername, strPassword, iIsEmp);
+            if (ValidateEmpField() && ValidatePasswordField())
+                Login();
         }
-
-        //private int RememberMe(int iUserRole)
-        //{
-        //    if (chk_KeepMeSignedIn.Checked)
-        //    {
-        //        isSaved = true;
-        //        try {
-        //            Properties.Settings.Default.Emp = strEmp;
-        //            Properties.Settings.Default.Username = strUsername;
-        //            Properties.Settings.Default.Password = strPassword;
-        //            Properties.Settings.Default.UserRole = iUserRole.ToString();
-        //            Properties.Settings.Default.Save();
-        //            return 1;
-        //        } catch
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return -1;
-        //}
 
         private void OpenManagementForm()
         {
-            Application.Run(new frm_Management(iIsEmp, iUID));
+            Application.Run(new frm_Management());
         }
 
         private void txt_Emp_TextChanged(object sender, EventArgs e)
         {
             txt_Username.ReadOnly = txt_Emp.TextLength > 0 ? true : false;
-            iIsEmp = 1;
+            UserContext.isEmp = 1;
+            UserContext.Username = txt_Emp.Text;
         }
 
         private void txt_Username_TextChanged(object sender, EventArgs e)
         {
             txt_Emp.ReadOnly = txt_Username.TextLength > 0 ? true : false;
-            iIsEmp = 2;
+            UserContext.isEmp = 2;
+            UserContext.Username = txt_Username.Text;
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if ((sender as Form).ActiveControl is Button)
             {
-                // do something
+              // do something
             } else if(!isSaved)
             {
                 if (MessageBox.Show("Are you sure want to exit?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
@@ -166,29 +134,63 @@ namespace Module_1
             }
         }
 
-        private string ValidateField()
-        {
-            strUsername = txt_Username.Text;
-            strPassword = txt_Password.Text;
-            strEmp = txt_Emp.Text;
-            
-            if (strUsername == "" && strEmp == "")
-            {
-                txt_Emp.Focus();
-                return "Employee or User field is REQUIRED.";
-            }
-            else if (strPassword == "")
-            {
-                txt_Password.Focus();
-                return (strPassword == "" ? "Password field is REQUIRED." : null);
-            }
-            return null;
-        }
-
         private void btn_Exit_Click(object sender, EventArgs e)
         {
             DialogResult exit = MessageBox.Show("Are you sure want to exit?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (exit == DialogResult.OK) Application.Exit();
+        }
+
+        private void txt_Emp_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateEmpField();
+        }
+        private bool ValidateEmpField()
+        {
+            bool status = true;
+            if (string.IsNullOrEmpty(txt_Emp.Text) && string.IsNullOrEmpty(txt_Username.Text))
+            {
+                status = false;
+                errorProvider.SetError(txt_Emp, "Employee or User field is REQUIRED.");
+                errorProvider.SetError(txt_Username, "Employee or User field is REQUIRED.");
+                return status;
+            }
+            else
+            {
+                errorProvider.SetError(txt_Emp, "");
+                errorProvider.SetError(txt_Username, "");
+                return status;                
+            }
+        }
+
+        private void txt_Username_Validating(object sender, CancelEventArgs e)
+        {
+            ValidateEmpField();
+        }
+
+        private void txt_Password_TextChanged(object sender, EventArgs e)
+        {
+            UserContext.Password = txt_Password.Text;
+        }
+        private bool ValidatePasswordField()
+        {
+            bool status = true;
+            if (string.IsNullOrEmpty(txt_Emp.Text) && string.IsNullOrEmpty(txt_Username.Text))
+            {
+                status = false;
+                errorProvider.SetError(txt_Emp, "Password field is REQUIRED.");
+                return status;
+            }
+            else
+            {
+                errorProvider.SetError(txt_Password, "");
+                return status;
+            }
+
+        }
+
+        private void txt_Password_Validating(object sender, CancelEventArgs e)
+        {
+            ValidatePasswordField();
         }
     }
 }
